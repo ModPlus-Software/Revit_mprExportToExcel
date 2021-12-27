@@ -1,9 +1,120 @@
-<Project Sdk="Microsoft.NET.Sdk">
+<Project Sdk="Microsoft.NET.Sdk.WindowsDesktop">
 
-  <PropertyGroup>
-    <TargetFramework>net6.0</TargetFramework>
-    <ImplicitUsings>enable</ImplicitUsings>
-    <Nullable>enable</Nullable>
-  </PropertyGroup>
+	<PropertyGroup>
+		<Version>0.0.0.1</Version>
+		<RootNamespace>mprExportToExcel</RootNamespace>
+		<AssemblyName>$(RootNamespace)</AssemblyName>
+		<Configurations>Debug;R2017;R2018;R2019;R2020;R2021;R2022</Configurations>
+		<Platforms>Any CPU;x64</Platforms>
+	</PropertyGroup>
+
+	<PropertyGroup>
+		<Company>modplus.org</Company>
+		<Authors>modplus.org</Authors>
+		<Product>ModPlus</Product>
+		<Copyright>Copyright © ModPlus</Copyright>
+		<CodeAnalysisRuleSet>$(SolutionDir)\ModPlus.ruleset</CodeAnalysisRuleSet>
+		<Platform>x64</Platform>
+		<AppendTargetFrameworkToOutputPath>false</AppendTargetFrameworkToOutputPath>
+		<Optimize>false</Optimize>
+		<Prefer32Bit>false</Prefer32Bit>
+		<UseWpf>true</UseWpf>
+		<MSBuildWarningsAsMessages>MSB3270</MSBuildWarningsAsMessages>
+		<LangVersion>latest</LangVersion>
+	</PropertyGroup>
+
+	<PropertyGroup Condition="'$(Configuration)' == 'R2017'">
+		<TargetFramework>net452</TargetFramework>
+		<Description>2017</Description>
+	</PropertyGroup>
+
+	<PropertyGroup Condition="'$(Configuration)' == 'R2018'">
+		<TargetFramework>net452</TargetFramework>
+		<Description>2018</Description>
+	</PropertyGroup>
+
+	<PropertyGroup Condition="'$(Configuration)' == 'R2019'">
+		<TargetFramework>net47</TargetFramework>
+		<Description>2019</Description>
+	</PropertyGroup>
+
+	<PropertyGroup Condition="'$(Configuration)' == 'R2020'">
+		<TargetFramework>net47</TargetFramework>
+		<Description>2020</Description>
+	</PropertyGroup>
+
+	<PropertyGroup Condition="'$(Configuration)' == 'R2021'">
+		<TargetFramework>net48</TargetFramework>
+		<Description>2021</Description>
+	</PropertyGroup>
+
+	<PropertyGroup Condition="'$(Configuration)' == 'R2022' or '$(Configuration)' == 'Debug'">
+		<TargetFramework>net48</TargetFramework>
+		<Description>2022</Description>
+	</PropertyGroup>
+
+	<PropertyGroup Condition="'$(Configuration)' == 'Debug'">
+		<Configurations>Debug</Configurations>
+		<DefineConstants>Debug;R$(Description)</DefineConstants>
+		<DebugSymbols>true</DebugSymbols>
+		<DebugType>full</DebugType>
+	</PropertyGroup>
+
+	<PropertyGroup Condition="'$(Configuration)' != 'Debug'">
+		<DefineConstants>R$(Description)</DefineConstants>
+	</PropertyGroup>
+
+	<PropertyGroup>
+		<AssemblyName>$(AssemblyName)_$(Description)</AssemblyName>
+	</PropertyGroup>
+
+	<Choose>
+		<When Condition="'$(Configuration)'=='R2017'">
+			<ItemGroup>
+				<PackageReference Include="ModPlus.Revit.API.2017" Version="2.0.0" ExcludeAssets="runtime" />
+				<PackageReference Include="ModPlus.Revit.Module.2017" Version="7.8.7" ExcludeAssets="runtime" />
+			</ItemGroup>
+		</When>
+		<When Condition="'$(Configuration)'=='R2018'">
+			<ItemGroup>
+				<PackageReference Include="ModPlus.Revit.API.2018" Version="2.0.0" ExcludeAssets="runtime" />
+				<PackageReference Include="ModPlus.Revit.Module.2018" Version="7.8.7" ExcludeAssets="runtime" />
+			</ItemGroup>
+		</When>
+		<When Condition="'$(Configuration)'=='R2019'">
+			<ItemGroup>
+				<PackageReference Include="ModPlus.Revit.API.2019" Version="3.0.0" ExcludeAssets="runtime" />
+				<PackageReference Include="ModPlus.Revit.Module.2019" Version="7.8.7" ExcludeAssets="runtime" />
+			</ItemGroup>
+		</When>
+		<When Condition="'$(Configuration)'=='R2020'">
+			<ItemGroup>
+				<PackageReference Include="ModPlus.Revit.API.2020" Version="3.0.0" ExcludeAssets="runtime" />
+				<PackageReference Include="ModPlus.Revit.Module.2020" Version="7.8.7" ExcludeAssets="runtime" />
+			</ItemGroup>
+		</When>
+		<When Condition="'$(Configuration)'=='R2021'">
+			<ItemGroup>
+				<PackageReference Include="ModPlus.Revit.API.2021" Version="3.0.0" ExcludeAssets="runtime" />
+				<PackageReference Include="ModPlus.Revit.Module.2021" Version="7.8.7" ExcludeAssets="runtime" />
+			</ItemGroup>
+		</When>
+		<When Condition="'$(Configuration)'=='R2022' or '$(Configuration)' == 'Debug'">
+			<ItemGroup>
+				<PackageReference Include="ModPlus.Revit.API.2022" Version="3.0.0" ExcludeAssets="runtime" />
+				<PackageReference Include="ModPlus.Revit.Module.2022" Version="7.8.7" ExcludeAssets="runtime" />
+			</ItemGroup>
+		</When>
+	</Choose>
+
+	<ItemGroup>
+		<PackageReference Include="JetBrains.Annotations" Version="2021.3.0" ExcludeAssets="runtime" />
+		<PackageReference Include="ModPlusAPI" Version="7.14.3" ExcludeAssets="runtime" />
+		<PackageReference Include="ModPlusStyle" Version="4.1.0" ExcludeAssets="runtime" />
+		<PackageReference Include="StyleCop.Analyzers" Version="1.1.118">
+			<PrivateAssets>all</PrivateAssets>
+			<IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+		</PackageReference>
+	</ItemGroup>
 
 </Project>
